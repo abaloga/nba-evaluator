@@ -542,7 +542,6 @@ def create_shot_chart(shot_data, player_name):
             'X_COORD': False,
             'Y_COORD': False
         },
-        title=f"{player_name} - Shot Chart",
         labels={'X_COORD': 'Court Position (X)', 'Y_COORD': 'Court Position (Y)'}
     )
     
@@ -613,12 +612,12 @@ def create_shot_chart(shot_data, player_name):
         ),
         plot_bgcolor='lightgray',
         paper_bgcolor='white',
-        height=700,
-        width=600,
-        title=dict(
-            text=f"{player_name} - Shot Chart ({len(shot_data)} shots)",
-            x=0.5
-        )
+        #height=200,
+        #width=250,
+        #title=dict(
+        #    text=f"{player_name} - Shot Chart ({len(shot_data)} shots)",
+        #    x=0.5
+        #)
     )
     
     return fig
@@ -691,12 +690,10 @@ def create_nba_style_zone_chart(shot_data, player_name):
     # Define zone coordinates and colors based on efficiency
     def get_zone_color(fg_pct):
         """Get color based on shooting percentage"""
-        if fg_pct >= 0.50:
+        if fg_pct >= 0.47:
             return 'rgba(76, 175, 80, 0.8)'  # Green
         elif fg_pct >= 0.40:
             return 'rgba(255, 235, 59, 0.8)'  # Yellow
-        elif fg_pct >= 0.30:
-            return 'rgba(255, 152, 0, 0.8)'   # Orange
         else:
             return 'rgba(244, 67, 54, 0.8)'   # Red
     
@@ -786,11 +783,11 @@ def create_nba_style_zone_chart(shot_data, player_name):
     
     # Update layout to match NBA style
     fig.update_layout(
-        title=dict(
-            text=f"{player_name} - Zone Shooting Chart",
-            x=0.5,
-            font=dict(size=20, color='white', family='Arial Black')
-        ),
+        #title=dict(
+        #    text=f"{player_name} - Zone Shooting Chart",
+        #    x=0.5,
+        #    font=dict(size=20, color='white', family='Arial Black')
+        #),
         xaxis=dict(
             range=[-27, 27], showgrid=False, zeroline=False,
             showticklabels=False, title=""
@@ -800,16 +797,16 @@ def create_nba_style_zone_chart(shot_data, player_name):
             showticklabels=False, title="", scaleanchor="x", scaleratio=1
         ),
         plot_bgcolor='rgba(139, 69, 19, 1)',  # Wood court color
-        paper_bgcolor='rgba(139, 69, 19, 1)',
-        height=700, width=700,
-        margin=dict(l=20, r=20, t=50, b=20)
+        #paper_bgcolor='rgba(139, 69, 19, 1)',
+        height=600, width=400,
+        margin=dict(l=10, r=10, t=40, b=10)
     )
     
     # Add legend
     legend_data = [
-        {"label": "Elite (50%+)", "color": 'rgba(76, 175, 80, 0.8)'},
-        {"label": "Good (40-49%)", "color": 'rgba(255, 235, 59, 0.8)'},
-        {"label": "Average (30-39%)", "color": 'rgba(255, 152, 0, 0.8)'},
+        {"label": "Elite (47%+)", "color": 'rgba(76, 175, 80, 0.8)'},
+        #{"label": "Good (40-46%)", "color": 'rgba(255, 235, 59, 0.8)'},
+        {"label": "Average (40-46%)", "color": 'rgba(255, 152, 0, 0.8)'},
         {"label": "Poor (<30%)", "color": 'rgba(244, 67, 54, 0.8)'}
     ]
     
